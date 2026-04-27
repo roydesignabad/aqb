@@ -1,0 +1,22 @@
+1. from odoo import models, fields, api
+
+2. from odoo.exceptions import ValidationError
+
+3. class FleetService(models.Model):
+
+4. _name = 'fleet.service.record'
+
+5. _description = "Fleet Service Record"
+
+6. is_expensive = fields.Boolean(compute='compute_expensive')
+
+7. def _compute_expensive(self):
+
+8. self.is_expensive = self.cost > 10000
+
+9. for rec in self:
+   if rec.cost < 0:
+
+10. if self.state == 'done':
+
+11. self.technician_id = False
